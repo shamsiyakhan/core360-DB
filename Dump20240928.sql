@@ -1,3 +1,4 @@
+use core360;
 -- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: core360
@@ -38,6 +39,7 @@ CREATE TABLE `organization` (
 
 LOCK TABLES `organization` WRITE;
 /*!40000 ALTER TABLE `organization` DISABLE KEYS */;
+INSERT INTO `organization` VALUES ('9o0ExTc94H','Core 360','camp pune','core3601@gmail.com','78945612320'),('dAsCSzNCFb','Core360','Camp','core360@gmail.com','7894561230'),('XLww2HlTAf','Test','Pune Camp','Test@gamil.com','8149863141');
 /*!40000 ALTER TABLE `organization` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,6 +63,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (101,'owner'),(102,'manager'),(103,'employee');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,6 +87,7 @@ CREATE TABLE `user` (
   `modifiedat` date DEFAULT NULL,
   `roleid` int(11) DEFAULT NULL,
   `orgid` varchar(50) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`userid`),
   UNIQUE KEY `email` (`email`),
   KEY `roleid` (`roleid`),
@@ -99,8 +103,17 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('4y4QqqaVJi','Test','tifipir301@chainds.com','Test123@',NULL,'Camp Pune',NULL,'1999-10-23','2024-10-12','2024-10-12',102,'dAsCSzNCFb','active'),('54V6DU5mpq','Shayban Salim Khan','shayban1@gmail.com','Test123@','8149863141','Camp Pune','male','1999-10-23','2024-10-11','2024-10-11',NULL,'9o0ExTc94H','Active'),('EXKx9kTSjT','Shayban Khan','shayban@gmail.com','Test123@','8149863141','Camp','Male','0000-00-00','2024-09-30','2024-09-30',NULL,'dAsCSzNCFb','active'),('mbnMU2dYg5',NULL,'xawexa2343@skrank.com',NULL,NULL,NULL,NULL,NULL,'2024-10-12','2024-10-12',102,'dAsCSzNCFb','inActive'),('tn8OdsXOAl','Shayban Khan','shaybankhan12345@gmail.com','Test123@','8149863141','Pune camp','Male','0000-00-00','2024-09-30','2024-09-30',101,'XLww2HlTAf','active');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'core360'
+--
+
+--
+-- Dumping routines for database 'core360'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -111,4 +124,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-28 16:24:03
+-- Dump completed on 2024-10-12 19:14:10
