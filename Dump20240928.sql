@@ -1,4 +1,5 @@
-use core360;
+CREATE DATABASE  IF NOT EXISTS `core360` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `core360`;
 -- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: core360
@@ -39,8 +40,31 @@ CREATE TABLE `organization` (
 
 LOCK TABLES `organization` WRITE;
 /*!40000 ALTER TABLE `organization` DISABLE KEYS */;
-INSERT INTO `organization` VALUES ('9o0ExTc94H','Core 360','camp pune','core3601@gmail.com','78945612320'),('dAsCSzNCFb','Core360','Camp','core360@gmail.com','7894561230'),('XLww2HlTAf','Test','Pune Camp','Test@gamil.com','8149863141');
+INSERT INTO `organization` VALUES ('1','allana','campus','sehrozkhan2704@gmail.com','9876543219'),('MmffMGHkvb','Core 360','Camp','shaybankhan12345@gmail.com','7894561230');
 /*!40000 ALTER TABLE `organization` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `otp`
+--
+
+DROP TABLE IF EXISTS `otp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `otp` (
+  `email` varchar(50) DEFAULT NULL,
+  `otp` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `otp`
+--
+
+LOCK TABLES `otp` WRITE;
+/*!40000 ALTER TABLE `otp` DISABLE KEYS */;
+INSERT INTO `otp` VALUES ('sehrozkhan2704@gmail.com','780004'),('sehrozkhan2704@gmail.com','994385'),('sehrozkhan2704@gmail.com','823285'),('sehrozkhan2704@gmail.com','138244'),('sehrozkhan2704@gmail.com','580196'),('sehrozkhan2704@gmail.com','918532'),('sehrozkhan2704@gmail.com','820304'),('sehrozkhan2704@gmail.com','311486'),('sehrozkhan2704@gmail.com','230422'),('sehrozkhan2704@gmail.com','596455'),('sehrozkhan2704@gmail.com','888330'),('sehrozkhan2704@gmail.com','693400'),('sehrozkhan2704@gmail.com','859223'),('sehrozkhan2704@gmail.com','549643'),('sehrozkhan2704@gmail.com','144910'),('sehrozkhan2704@gmail.com','770387'),('sehrozkhan2704@gmail.com','870415');
+/*!40000 ALTER TABLE `otp` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -68,6 +92,73 @@ INSERT INTO `role` VALUES (101,'owner'),(102,'manager'),(103,'employee');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `task`
+--
+
+DROP TABLE IF EXISTS `task`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `task` (
+  `taskid` varchar(20) NOT NULL,
+  `taskname` varchar(80) DEFAULT NULL,
+  `assignedby` varchar(50) DEFAULT NULL,
+  `assignedat` varchar(50) DEFAULT NULL,
+  `deadline` date DEFAULT NULL,
+  `taskstatus` varchar(80) DEFAULT NULL,
+  `hourstracked` varchar(50) DEFAULT NULL,
+  `starttime` varchar(20) DEFAULT NULL,
+  `endtime` varchar(20) DEFAULT NULL,
+  `userid` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`taskid`),
+  KEY `userid` (`userid`),
+  CONSTRAINT `task_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `task`
+--
+
+LOCK TABLES `task` WRITE;
+/*!40000 ALTER TABLE `task` DISABLE KEYS */;
+/*!40000 ALTER TABLE `task` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `teams`
+--
+
+DROP TABLE IF EXISTS `teams`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `teams` (
+  `teamid` varchar(20) NOT NULL,
+  `teamname` varchar(80) DEFAULT NULL,
+  `teaminfo` varchar(200) DEFAULT NULL,
+  `teammember` varchar(500) DEFAULT NULL,
+  `createdat` date DEFAULT NULL,
+  `createdby` varchar(80) DEFAULT NULL,
+  `userid` varchar(50) DEFAULT NULL,
+  `orgid` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`teamid`),
+  KEY `userid` (`userid`),
+  KEY `orgid` (`orgid`),
+  CONSTRAINT `orgid` FOREIGN KEY (`orgid`) REFERENCES `organization` (`orgid`),
+  CONSTRAINT `teams_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `teams`
+--
+
+LOCK TABLES `teams` WRITE;
+/*!40000 ALTER TABLE `teams` DISABLE KEYS */;
+INSERT INTO `teams` VALUES ('6YRvQilMG7','UI UX','Designers','[\"IpuJD6KF7D\"]','2024-10-24','3LqPQ1PAfH','3LqPQ1PAfH','MmffMGHkvb'),('aghhttUL6Q','Backend Developer','test developer','[\"3LqPQ1PAfH\"]','2024-10-24','3LqPQ1PAfH','3LqPQ1PAfH','MmffMGHkvb'),('aLz0hWKpMT','Production Team','List of all members of production team','[\"3LqPQ1PAfH\",\"IpuJD6KF7D\"]','2024-10-24','3LqPQ1PAfH','3LqPQ1PAfH','MmffMGHkvb'),('lko1KkIXq1','Test Tea,','test team','[\"IpuJD6KF7D\"]','2024-10-24','3LqPQ1PAfH','3LqPQ1PAfH','MmffMGHkvb'),('OTDGoOATPv','Frontend Developers','List of developers','[\"3LqPQ1PAfH\",\"IpuJD6KF7D\"]','2024-10-24','3LqPQ1PAfH','3LqPQ1PAfH','MmffMGHkvb');
+/*!40000 ALTER TABLE `teams` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -87,7 +178,7 @@ CREATE TABLE `user` (
   `modifiedat` date DEFAULT NULL,
   `roleid` int(11) DEFAULT NULL,
   `orgid` varchar(50) DEFAULT NULL,
-  `status` varchar(50) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`userid`),
   UNIQUE KEY `email` (`email`),
   KEY `roleid` (`roleid`),
@@ -103,7 +194,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('4y4QqqaVJi','Test','tifipir301@chainds.com','Test123@',NULL,'Camp Pune',NULL,'1999-10-23','2024-10-12','2024-10-12',102,'dAsCSzNCFb','active'),('54V6DU5mpq','Shayban Salim Khan','shayban1@gmail.com','Test123@','8149863141','Camp Pune','male','1999-10-23','2024-10-11','2024-10-11',NULL,'9o0ExTc94H','Active'),('EXKx9kTSjT','Shayban Khan','shayban@gmail.com','Test123@','8149863141','Camp','Male','0000-00-00','2024-09-30','2024-09-30',NULL,'dAsCSzNCFb','active'),('mbnMU2dYg5',NULL,'xawexa2343@skrank.com',NULL,NULL,NULL,NULL,NULL,'2024-10-12','2024-10-12',102,'dAsCSzNCFb','inActive'),('tn8OdsXOAl','Shayban Khan','shaybankhan12345@gmail.com','Test123@','8149863141','Pune camp','Male','0000-00-00','2024-09-30','2024-09-30',101,'XLww2HlTAf','active');
+INSERT INTO `user` VALUES ('3LqPQ1PAfH','Shayban Khan','shaybankhan12345@gmail.com','Test123@','8149863141','camp','male','1999-10-23','2024-10-24','2024-10-24',101,'MmffMGHkvb','Active'),('IpuJD6KF7D','shayban test','lewage2024@aleitar.com','test123@',NULL,'camp',NULL,'9999-01-21','2024-10-24','2024-10-24',103,'MmffMGHkvb','active'),('u101','shamsiya','sehrozkhan2704@gmail.com','Shams123@','7841849749','kharadi','female','0000-00-00','0000-00-00','0000-00-00',101,'1',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,4 +215,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-12 19:14:10
+-- Dump completed on 2024-10-24 21:41:03
