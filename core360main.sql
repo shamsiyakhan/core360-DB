@@ -18,6 +18,37 @@ USE `core360`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `admin` (
+  `admin_id` varchar(50) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `phonenumber` varchar(50) DEFAULT NULL,
+  `address` varchar(50) DEFAULT NULL,
+  `gender` varchar(50) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `createdat` date DEFAULT NULL,
+  `modifiedat` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin`
+--
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES ('WT34HY17NJ','Shayban Khan','shaybankhan12345@gmail.com','VGVzdDEyM0A=','9999999999','Camp','male','1970-01-01','0000-00-00','2024-11-15');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `category`
 --
 
@@ -118,6 +149,7 @@ CREATE TABLE `organization` (
   `orgaddress` varchar(200) DEFAULT NULL,
   `orgmail` varchar(100) DEFAULT NULL,
   `orgnumber` varchar(50) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`orgid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -128,7 +160,7 @@ CREATE TABLE `organization` (
 
 LOCK TABLES `organization` WRITE;
 /*!40000 ALTER TABLE `organization` DISABLE KEYS */;
-INSERT INTO `organization` VALUES ('1','allana','campus','sehrozkhan2704@gmail.com','9876543219'),('eGpZhbaA38','camp','Camp','organization@gmail.com','7894561230'),('MmffMGHkvb','Core 360','Camp','shaybankhan12345@gmail.com','7894561230');
+INSERT INTO `organization` VALUES ('1','allana','campus','sehrozkhan2704@gmail.com','9876543219','active'),('eGpZhbaA38','camp','Camp','organization@gmail.com','7894561230','active'),('MmffMGHkvb','Core 360','Camp','shaybankhan12345@gmail.com','7894561230','active');
 /*!40000 ALTER TABLE `organization` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,6 +185,36 @@ LOCK TABLES `otp` WRITE;
 /*!40000 ALTER TABLE `otp` DISABLE KEYS */;
 INSERT INTO `otp` VALUES ('sehrozkhan2704@gmail.com','780004'),('sehrozkhan2704@gmail.com','994385'),('sehrozkhan2704@gmail.com','823285'),('sehrozkhan2704@gmail.com','138244'),('sehrozkhan2704@gmail.com','580196'),('sehrozkhan2704@gmail.com','918532'),('sehrozkhan2704@gmail.com','820304'),('sehrozkhan2704@gmail.com','311486'),('sehrozkhan2704@gmail.com','230422'),('sehrozkhan2704@gmail.com','596455'),('sehrozkhan2704@gmail.com','888330'),('sehrozkhan2704@gmail.com','693400'),('sehrozkhan2704@gmail.com','859223'),('sehrozkhan2704@gmail.com','549643'),('sehrozkhan2704@gmail.com','144910'),('sehrozkhan2704@gmail.com','770387'),('sehrozkhan2704@gmail.com','870415'),('yobegey752@anypng.com','732128'),('jibale6332@edectus.com','454553');
 /*!40000 ALTER TABLE `otp` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reports`
+--
+
+DROP TABLE IF EXISTS `reports`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `reports` (
+  `report_id` varchar(50) DEFAULT NULL,
+  `report_title` varchar(50) DEFAULT NULL,
+  `report_content` varchar(1000) DEFAULT NULL,
+  `report_status` varchar(20) DEFAULT NULL,
+  `reported_by` varchar(50) DEFAULT NULL,
+  `reported_on` datetime DEFAULT NULL,
+  `resolved_on` datetime DEFAULT NULL,
+  KEY `reported_by` (`reported_by`),
+  CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`reported_by`) REFERENCES `user` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reports`
+--
+
+LOCK TABLES `reports` WRITE;
+/*!40000 ALTER TABLE `reports` DISABLE KEYS */;
+INSERT INTO `reports` VALUES ('qxfi4RYNBj','Site Not working','i am not sure but i was working for a long time and suddenly my site stopped working not sure why can you please look into it','Resolved','Wjs51yYrSh','2024-11-16 00:30:16','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `reports` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -287,7 +349,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('3LqPQ1PAfH','Shayban Khan','shaybankhan12345@gmail.com','Test123@','8149863141','camp','male','1999-10-23','2024-10-24','2024-10-24',101,'MmffMGHkvb','Active'),('IpuJD6KF7D','shayban test','lewage2024@aleitar.com','test123@',NULL,'camp',NULL,'9999-01-21','2024-10-24','2024-10-24',103,'MmffMGHkvb','active'),('K1CehiENBO','Shamsiya Khan','jibale6332@edectus.com','VGVzdDEyM0A=','8976543210','kharadi',NULL,'1999-04-27','2024-11-10','2024-11-10',102,'eGpZhbaA38','active'),('o8mLTxt1pg','Test Employee','yobegey752@anypng.com','VGVzdDEyM0A=',NULL,'camp',NULL,'2024-11-07','2024-11-07','2024-11-07',103,'eGpZhbaA38','active'),('qn0AMocI5V',NULL,'khan2704@gmail.com',NULL,NULL,NULL,NULL,NULL,'2024-11-11','2024-11-11',102,'eGpZhbaA38','inActive'),('qRmflSIf3A','test shayban','ririwag192@inikale.com','VGVzdDEyM0A=','1234567890','Camp',NULL,'2024-11-04','2024-11-11','2024-11-11',102,'eGpZhbaA38','active'),('u101','shamsiya','sehrozkhan2704@gmail.com','Shams123@','7841849749','kharadi','female','0000-00-00','0000-00-00','0000-00-00',101,'1',NULL),('Wjs51yYrSh','Shayban Khan','organization@gmail.com','VGVzdDEyM0A=','9876543210','camp','male','2024-11-06','2024-11-06','2024-11-06',101,'eGpZhbaA38','Active');
+INSERT INTO `user` VALUES ('3LqPQ1PAfH','Shayban Khan','shaybankhan12345@gmail.com','Test123@','8149863141','camp','male','1999-10-23','2024-10-24','2024-10-24',101,'MmffMGHkvb','Deactivated'),('IpuJD6KF7D','shayban test','lewage2024@aleitar.com','test123@',NULL,'camp',NULL,'9999-01-21','2024-10-24','2024-10-24',103,'MmffMGHkvb','Deactivated'),('K1CehiENBO','Shamsiya Khan','jibale6332@edectus.com','VGVzdDEyM0A=','8976543210','kharadi',NULL,'1999-04-27','2024-11-10','2024-11-10',102,'eGpZhbaA38','active'),('o8mLTxt1pg','Test Employee','yobegey752@anypng.com','VGVzdDEyM0A=','78794561230','camp','female','2024-11-05','2024-11-07','2024-11-15',103,'eGpZhbaA38','active'),('qRmflSIf3A','test shayban','ririwag192@inikale.com','VGVzdDEyM0A=','1234567890','Camp',NULL,'2024-11-04','2024-11-11','2024-11-11',102,'eGpZhbaA38','active'),('u101','shamsiya','sehrozkhan2704@gmail.com','Shams123@','7841849749','kharadi','female','0000-00-00','0000-00-00','0000-00-00',101,'1',NULL),('Wjs51yYrSh','Shayban Khan','organization@gmail.com','VGVzdDEyM0A=','1234567890','camp','male','2024-11-04','2024-11-06','2024-11-15',101,'eGpZhbaA38','active');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,4 +370,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-11 14:45:05
+-- Dump completed on 2024-11-16  1:34:33
