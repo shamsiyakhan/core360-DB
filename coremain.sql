@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `core360` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `core360`;
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: core360
 -- ------------------------------------------------------
@@ -280,6 +280,36 @@ INSERT INTO `task` VALUES ('cU8NaLDYk9','Develop Login Module','Wjs51yYrSh','202
 UNLOCK TABLES;
 
 --
+-- Table structure for table `taskrequest`
+--
+
+DROP TABLE IF EXISTS `taskrequest`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `taskrequest` (
+  `rid` varchar(50) NOT NULL,
+  `assignedby` varchar(50) DEFAULT NULL,
+  `assignedto` varchar(50) DEFAULT NULL,
+  `rmsg` varchar(1000) DEFAULT NULL,
+  `deadline` date DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `taskid` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`rid`),
+  KEY `taskid` (`taskid`),
+  CONSTRAINT `taskrequest_ibfk_1` FOREIGN KEY (`taskid`) REFERENCES `task` (`taskid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `taskrequest`
+--
+
+LOCK TABLES `taskrequest` WRITE;
+/*!40000 ALTER TABLE `taskrequest` DISABLE KEYS */;
+/*!40000 ALTER TABLE `taskrequest` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `teams`
 --
 
@@ -349,7 +379,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('3LqPQ1PAfH','Shayban Khan','shaybankhan12345@gmail.com','Test123@','8149863141','camp','male','1999-10-23','2024-10-24','2024-10-24',101,'MmffMGHkvb','Deactivated'),('IpuJD6KF7D','shayban test','lewage2024@aleitar.com','test123@',NULL,'camp',NULL,'9999-01-21','2024-10-24','2024-10-24',103,'MmffMGHkvb','Deactivated'),('K1CehiENBO','Shamsiya Khan(Manager)','jibale6332@edectus.com','VGVzdDEyM0A=','8976543210','kharadi',NULL,'1999-04-26','2024-11-10','2024-11-27',102,'eGpZhbaA38','active'),('l8mvZ966kr','fayaaz','fayazbyakod21@gmail.com','VGVzdDEyM0A=','78945613230','camp',NULL,'2013-11-13','2024-11-26','2024-11-26',103,'eGpZhbaA38','active'),('o8mLTxt1pg','Fareeha Employee','yobegey752@anypng.com','','78794561230','camp','female','2024-11-03','2024-11-07','2024-11-27',103,'eGpZhbaA38','active'),('qRmflSIf3A','test shayban','ririwag192@inikale.com','VGVzdDEyM0A=','1234567890','Camp',NULL,'2024-11-04','2024-11-11','2024-11-11',102,'eGpZhbaA38','active'),('u101','shamsiya','sehrozkhan2704@gmail.com','Shams123@','7841849749','kharadi','female','0000-00-00','0000-00-00','0000-00-00',101,'1',NULL),('Wjs51yYrSh','Shayban Khan(Owner)','organization@gmail.com','VGVzdDEyM0A=','1234567890','camp','male','2024-11-03','2024-11-06','2024-11-27',101,'eGpZhbaA38','active');
+INSERT INTO `user` VALUES ('3LqPQ1PAfH','Shayban Khan','shaybankhan12345@gmail.com','Test123@','8149863141','camp','male','1999-10-23','2024-10-24','2024-10-24',101,'MmffMGHkvb','Deactivated'),('IpuJD6KF7D','shayban test','lewage2024@aleitar.com','test123@',NULL,'camp',NULL,'9999-01-21','2024-10-24','2024-10-24',103,'MmffMGHkvb','Deactivated'),('K1CehiENBO','Shamsiya Khan(Manager)','jibale6332@edectus.com','VGVzdDEyM0A=','8976543210','kharadi',NULL,'1999-04-26','2024-11-10','2024-11-27',102,'eGpZhbaA38','active'),('l8mvZ966kr','fayaaz','fayazbyakod21@gmail.com','VGVzdDEyM0A=','78945613230','camp',NULL,'2013-11-13','2024-11-26','2024-11-26',103,'eGpZhbaA38','active'),('o8mLTxt1pg','Fareeha Employee','yobegey752@anypng.com','VGVzdDEyM0A=','78794561230','camp','female','2024-11-03','2024-11-07','2024-11-27',103,'eGpZhbaA38','active'),('qRmflSIf3A','test shayban','ririwag192@inikale.com','VGVzdDEyM0A=','1234567890','Camp',NULL,'2024-11-04','2024-11-11','2024-11-11',102,'eGpZhbaA38','active'),('u101','shamsiya','sehrozkhan2704@gmail.com','Shams123@','7841849749','kharadi','female','0000-00-00','0000-00-00','0000-00-00',101,'1',NULL),('Wjs51yYrSh','Shayban Khan(Owner)','organization@gmail.com','VGVzdDEyM0A=','1234567890','camp','male','2024-11-03','2024-11-06','2024-11-27',101,'eGpZhbaA38','active');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,4 +400,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-27 14:34:15
+-- Dump completed on 2024-11-27 17:39:48
