@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `core360` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `core360`;
--- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: core360
 -- ------------------------------------------------------
@@ -275,7 +275,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES ('cU8NaLDYk9','Develop Login Module','Wjs51yYrSh','2024-10-12 10:00:00','2024-10-19','Completed',12.79,'2024-11-10 08:39:33','2024-11-10 09:23:55','o8mLTxt1pg','eGpZhbaA38',0),('E2prAOz6mD','Test Task1','Wjs51yYrSh','2024-11-07 17:50:31.672000','2024-11-30','Open',0.00,'0000-00-00 00:00:00','0000-00-00 00:00:00','Wjs51yYrSh','eGpZhbaA38',0),('faVgSnE9jE','test','Wjs51yYrSh','2024-11-26 15:41:59.093000','2024-11-30','In Progress',0.00,'2024-11-26 10:12:15','2024-11-26 10:12:18','l8mvZ966kr','eGpZhbaA38',0),('FjptRVomBf','Test Task Email','Wjs51yYrSh','2024-11-11 12:13:15.836000','2024-11-22','Open',0.00,'0000-00-00 00:00:00','0000-00-00 00:00:00','qRmflSIf3A','eGpZhbaA38',NULL),('PaE74IJHv0','Today Task','Wjs51yYrSh','2024-11-08 17:52:02.470000','2024-11-08','In Progress',0.05,'2024-11-26 09:12:03','2024-11-26 09:15:20','o8mLTxt1pg','eGpZhbaA38',0),('pERFjG9Rm1','frontend ','Wjs51yYrSh','2024-11-11 14:08:22.268000','2024-11-30','Completed',0.00,'2024-11-11 08:42:24','2024-11-11 08:42:28','K1CehiENBO','eGpZhbaA38',0),('PkSNJzCg7W','Tomorrow Task','Wjs51yYrSh','2024-11-08 17:51:00.809000','2024-11-09','In Progress',0.68,'2024-11-10 08:36:33','2024-11-10 09:12:55','o8mLTxt1pg','eGpZhbaA38',0);
+INSERT INTO `task` VALUES ('coP2tVG3is','Assign Employee','K1CehiENBO','2024-11-29 22:49:14.273000','2025-03-25','Open',0.00,'0000-00-00 00:00:00','0000-00-00 00:00:00','o8mLTxt1pg','eGpZhbaA38',NULL),('cU8NaLDYk9','Develop Login Module','Wjs51yYrSh','2024-10-12 10:00:00','2024-10-19','Completed',12.79,'2024-11-10 08:39:33','2024-11-10 09:23:55','o8mLTxt1pg','eGpZhbaA38',0),('E2prAOz6mD','Test Task1','Wjs51yYrSh','2024-11-07 17:50:31.672000','2024-11-30','Open',0.00,'0000-00-00 00:00:00','0000-00-00 00:00:00','Wjs51yYrSh','eGpZhbaA38',0),('faVgSnE9jE','test','Wjs51yYrSh','2024-11-26 15:41:59.093000','2024-11-30','In Progress',0.00,'2024-11-26 10:12:15','2024-11-26 10:12:18','l8mvZ966kr','eGpZhbaA38',0),('FjptRVomBf','Test Task Email','Wjs51yYrSh','2024-11-11 12:13:15.836000','2024-11-22','Open',0.00,'0000-00-00 00:00:00','0000-00-00 00:00:00','qRmflSIf3A','eGpZhbaA38',NULL),('PaE74IJHv0','Today Task','Wjs51yYrSh','2024-11-08 17:52:02.470000','2024-11-08','In Progress',0.05,'2024-11-29 07:10:35','2024-11-29 07:10:37','o8mLTxt1pg','eGpZhbaA38',0),('pERFjG9Rm1','frontend ','Wjs51yYrSh','2024-11-11 14:08:22.268000','2024-11-30','Completed',0.00,'2024-11-11 08:42:24','2024-11-11 08:42:28','K1CehiENBO','eGpZhbaA38',0),('PkSNJzCg7W','Tomorrow Task','Wjs51yYrSh','2024-11-08 17:51:00.809000','2024-11-09','In Progress',0.68,'2024-11-10 08:36:33','2024-11-10 09:12:55','o8mLTxt1pg','eGpZhbaA38',0);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,6 +294,8 @@ CREATE TABLE `taskrequest` (
   `deadline` date DEFAULT NULL,
   `status` varchar(10) DEFAULT NULL,
   `taskid` varchar(50) DEFAULT NULL,
+  `request_addedAt` date DEFAULT NULL,
+  `request_action_addedAt` date DEFAULT NULL,
   PRIMARY KEY (`rid`),
   KEY `taskid` (`taskid`),
   CONSTRAINT `taskrequest_ibfk_1` FOREIGN KEY (`taskid`) REFERENCES `task` (`taskid`)
@@ -306,6 +308,7 @@ CREATE TABLE `taskrequest` (
 
 LOCK TABLES `taskrequest` WRITE;
 /*!40000 ALTER TABLE `taskrequest` DISABLE KEYS */;
+INSERT INTO `taskrequest` VALUES ('JTMGj1u6N9','K1CehiENBO','o8mLTxt1pg','i am packed with some task cannot do now','2025-03-25','approved','coP2tVG3is','2024-11-29','2024-11-29'),('Tkt4WnwM5Y','Wjs51yYrSh','o8mLTxt1pg','i have a different task assigned to me which has a higher priority','2025-01-06','pending','PaE74IJHv0','2024-11-29',NULL);
 /*!40000 ALTER TABLE `taskrequest` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -400,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-27 17:39:48
+-- Dump completed on 2024-11-30  0:22:41
